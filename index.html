@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Untutored Union | Built on Experience, Not Tutorials</title>
-  <meta name="description" content="Untutored Union is a creative + engineering studio offering CAD design, graphic design, packaging design, and logo design." />
+  <meta name="description" content="Untutored Union is a creative + engineering studio offering CAD design, graphic design, packaging design, logo design, manuals, and video editing." />
   <style>
     :root{
       --bg:#0b0f14;
@@ -69,7 +69,7 @@
     }
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
     .hero h2{font-size:44px;line-height:1.06;margin:18px 0 12px;letter-spacing:-.6px}
-    .hero .sub{color:var(--muted);font-size:16px;max-width:56ch}
+    .hero .sub{color:var(--muted);font-size:16px;max-width:60ch}
     .heroActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
 
     .card{
@@ -93,7 +93,9 @@
     .sectionTitle p{margin:0;color:var(--muted);font-size:13px;max-width:70ch}
 
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .service{padding:16px}
+    .service{padding:0;overflow:hidden}
+    .svcThumb{height:140px;border-bottom:1px solid var(--line);background-size:cover;background-position:center;filter:saturate(1.05)}
+    .svcBody{padding:16px}
     .service h4{margin:0 0 8px}
     .service p{margin:0;color:var(--muted);font-size:13px}
     .pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -102,19 +104,31 @@
     /* Portfolio */
     .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .proj{overflow:hidden}
-    .thumb{height:170px;border-bottom:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,106,0,.25), rgba(124,58,237,.22)),
-                  repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 10px, rgba(255,255,255,0) 10px 20px);
-    }
+    .thumb{height:170px;border-bottom:1px solid var(--line);background-size:cover;background-position:center}
     .projBody{padding:14px}
     .projBody h4{margin:0 0 6px}
     .projBody p{margin:0;color:var(--muted);font-size:13px}
 
     /* Process */
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .step{padding:14px}
-    .step .n{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
-      background:rgba(255,255,255,.06);border:1px solid var(--line);font-weight:800}
+    .step{padding:16px;position:relative;overflow:hidden}
+    .step::before{
+      content:"";
+      position:absolute;
+      inset:-40% -40%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,106,0,.18), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(124,58,237,.18), transparent 45%);
+      transform:rotate(8deg)
+    }
+    .stepInner{position:relative}
+    .step .n{
+      width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      font-weight:900
+    }
+    .ico{font-size:18px;line-height:1;margin-left:8px;opacity:.95}
     .step h4{margin:10px 0 6px}
     .step p{margin:0;color:var(--muted);font-size:13px}
 
@@ -123,8 +137,13 @@
     form{padding:16px}
     label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
     input, textarea{
-      width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(0,0,0,.18);color:var(--text);outline:none
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none
     }
     textarea{min-height:120px;resize:vertical}
     .note{color:var(--muted);font-size:12px;margin-top:10px}
@@ -147,6 +166,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="topbar">
     <div class="container">
@@ -158,12 +178,16 @@
             <p>Built on experience, not tutorials.</p>
           </div>
         </a>
+
         <nav class="links" aria-label="Primary">
           <a href="#services">Services</a>
           <a href="#work">Work</a>
           <a href="#process">Process</a>
           <a href="#contact">Contact</a>
+          <!-- Talent portal link placeholder (we’ll build later) -->
+          <a href="/talent/" title="Talent Portal (coming soon)">Talent</a>
         </nav>
+
         <div class="cta">
           <a class="btn" href="#work">View work</a>
           <a class="btn primary" href="#contact">Get a quote</a>
@@ -178,13 +202,15 @@
         <div class="heroGrid">
           <div>
             <div class="tag"><span class="dot"></span> Creative + Engineering design studio</div>
-            <h2>Design that ships. Engineering that lasts.</h2>
+            <h2>Premium design that looks sharp—and works in the real world.</h2>
             <p class="sub">
-              We deliver CAD, branding, packaging, and product visuals with a production mindset—clear files, clean handoffs, and fast iterations.
+              We blend creative direction with engineering discipline across CAD, branding, packaging, graphics, and video.
+              Expect clean files, clear communication, and work that’s ready for production and launch.
             </p>
             <div class="heroActions">
               <a class="btn primary" href="#contact">Start a project</a>
               <a class="btn" href="#services">Explore services</a>
+              <a class="btn" href="/talent/">Join talent (soon)</a>
             </div>
           </div>
 
@@ -226,45 +252,68 @@
 
         <div class="grid3">
           <div class="card service">
-            <h4>CAD & Product Design</h4>
-            <p>3D modeling, DFM-ready drawings, assemblies, renders, and fabrication packages.</p>
-            <div class="pillRow">
-              <span class="pill">SolidWorks</span><span class="pill">AutoCAD</span><span class="pill">GD&T</span><span class="pill">DFM</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>CAD & Product Design</h4>
+              <p>3D modeling, assemblies, DFM-ready drawings, renders, and fabrication packages.</p>
+              <div class="pillRow">
+                <span class="pill">SolidWorks</span><span class="pill">AutoCAD</span><span class="pill">GD&T</span><span class="pill">DFM</span>
+              </div>
             </div>
           </div>
+
           <div class="card service">
-            <h4>Branding & Logo</h4>
-            <p>Modern identities: logo systems, wordmarks, brand kits, and scalable guidelines.</p>
-            <div class="pillRow">
-              <span class="pill">Logo system</span><span class="pill">Brand kit</span><span class="pill">Guidelines</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>Branding & Logo</h4>
+              <p>Modern identities: logo systems, wordmarks, brand kits, and scalable guidelines.</p>
+              <div class="pillRow">
+                <span class="pill">Logo system</span><span class="pill">Brand kit</span><span class="pill">Guidelines</span>
+              </div>
             </div>
           </div>
+
           <div class="card service">
-            <h4>Packaging Design</h4>
-            <p>Die-lines, print-ready layouts, product labels, and shelf-ready packaging systems.</p>
-            <div class="pillRow">
-              <span class="pill">Dielines</span><span class="pill">Print-ready</span><span class="pill">Compliance</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>Packaging Design</h4>
+              <p>Die-lines, print-ready layouts, labels, and shelf-ready packaging systems.</p>
+              <div class="pillRow">
+                <span class="pill">Dielines</span><span class="pill">Print-ready</span><span class="pill">Compliance</span>
+              </div>
             </div>
           </div>
+
           <div class="card service">
-            <h4>Graphic Design</h4>
-            <p>Marketing assets, social kits, pitch decks, brochures, and illustrations.</p>
-            <div class="pillRow">
-              <span class="pill">Decks</span><span class="pill">Social</span><span class="pill">Illustration</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>Graphic Design</h4>
+              <p>Marketing assets, social kits, pitch decks, brochures, and illustration systems.</p>
+              <div class="pillRow">
+                <span class="pill">Decks</span><span class="pill">Social</span><span class="pill">Print</span>
+              </div>
             </div>
           </div>
+
           <div class="card service">
-            <h4>Visuals & Renders</h4>
-            <p>Product renders, hero images, key visuals, and mockups for launches.</p>
-            <div class="pillRow">
-              <span class="pill">KeyShot</span><span class="pill">Mockups</span><span class="pill">Launch-ready</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>Video Editing</h4>
+              <p>Installation videos, product walkthroughs, motion graphics, and launch cuts.</p>
+              <div class="pillRow">
+                <span class="pill">How-to videos</span><span class="pill">Captions</span><span class="pill">Motion</span>
+              </div>
             </div>
           </div>
+
           <div class="card service">
-            <h4>Systems & Templates</h4>
-            <p>Reusable templates for brand consistency: packaging grids, layout systems, and CAD standards.</p>
-            <div class="pillRow">
-              <span class="pill">Templates</span><span class="pill">Libraries</span><span class="pill">Standards</span>
+            <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=70')"></div>
+            <div class="svcBody">
+              <h4>Manuals & Documentation</h4>
+              <p>Installation manuals, assembly guides, diagrams, and brand-consistent templates.</p>
+              <div class="pillRow">
+                <span class="pill">Illustrations</span><span class="pill">Layouts</span><span class="pill">PDFs</span>
+              </div>
             </div>
           </div>
         </div>
@@ -274,30 +323,48 @@
         <div class="sectionTitle">
           <div>
             <h3>Selected work</h3>
-            <p>Swap these placeholders with your real projects. Each card is built for a short case-study.</p>
+            <p>Swap these with your real projects. Each card is built for a short case-study.</p>
           </div>
         </div>
 
         <div class="portfolio">
           <article class="card proj">
-            <div class="thumb" role="img" aria-label="Project thumbnail"></div>
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="CAD project thumbnail"></div>
             <div class="projBody">
               <h4>CAD redesign for manufacturability</h4>
               <p>Reduced part count and improved assembly clarity with production-ready drawings.</p>
             </div>
           </article>
+
           <article class="card proj">
-            <div class="thumb" role="img" aria-label="Project thumbnail"></div>
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Brand identity thumbnail"></div>
             <div class="projBody">
               <h4>Brand + logo system</h4>
-              <p>Clean identity and usage rules built for digital, print, and packaging consistency.</p>
+              <p>Logo suite, typography, and usage rules built for digital, print, and packaging.</p>
             </div>
           </article>
+
           <article class="card proj">
-            <div class="thumb" role="img" aria-label="Project thumbnail"></div>
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1520975682031-ae24b3c747ff?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Packaging design thumbnail"></div>
             <div class="projBody">
               <h4>Packaging + dielines</h4>
-              <p>Print-ready packaging with dielines, label specs, and shelf-ready mockups.</p>
+              <p>Print-ready packaging system with dielines, specs, and mockups for launch.</p>
+            </div>
+          </article>
+
+          <article class="card proj">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Graphic design thumbnail"></div>
+            <div class="projBody">
+              <h4>Marketing graphics system</h4>
+              <p>Reusable templates and assets for consistent launch visuals across channels.</p>
+            </div>
+          </article>
+
+          <article class="card proj">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Video editing thumbnail"></div>
+            <div class="projBody">
+              <h4>Installation video edit</h4>
+              <p>Clean cuts, captions, callouts, and motion overlays for a clear how-to experience.</p>
             </div>
           </article>
         </div>
@@ -313,24 +380,43 @@
 
         <div class="steps">
           <div class="card step">
-            <div class="n">1</div>
-            <h4>Scope</h4>
-            <p>Goals, constraints, timeline, and deliverables. We align before we design.</p>
+            <div class="stepInner">
+              <div style="display:flex;align-items:center">
+                <div class="n">1</div><div class="ico">🧠</div>
+              </div>
+              <h4>Discover</h4>
+              <p>We align on goals, constraints, audience, and success criteria. Clear scope = faster wins.</p>
+            </div>
           </div>
+
           <div class="card step">
-            <div class="n">2</div>
-            <h4>Draft</h4>
-            <p>First concepts fast—structured options with notes and tradeoffs.</p>
+            <div class="stepInner">
+              <div style="display:flex;align-items:center">
+                <div class="n">2</div><div class="ico">✏️</div>
+              </div>
+              <h4>Design</h4>
+              <p>Concept options with rationale. For CAD: manufacturability and tolerances stay in focus.</p>
+            </div>
           </div>
+
           <div class="card step">
-            <div class="n">3</div>
-            <h4>Iterate</h4>
-            <p>Feedback cycles with version control and clean decision points.</p>
+            <div class="stepInner">
+              <div style="display:flex;align-items:center">
+                <div class="n">3</div><div class="ico">🔁</div>
+              </div>
+              <h4>Iterate</h4>
+              <p>Tight feedback loops with version control. We refine quickly without losing direction.</p>
+            </div>
           </div>
+
           <div class="card step">
-            <div class="n">4</div>
-            <h4>Deliver</h4>
-            <p>Final files packaged properly: CAD, print-ready, and brand assets.</p>
+            <div class="stepInner">
+              <div style="display:flex;align-items:center">
+                <div class="n">4</div><div class="ico">📦</div>
+              </div>
+              <h4>Deliver</h4>
+              <p>Final files packaged properly: CAD, print-ready artwork, editable sources, and guidelines.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -346,83 +432,4 @@
         <div class="contact">
           <form class="card" id="quoteForm">
             <label for="name">Name</label>
-            <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
-
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
-
-            <label for="service">Service</label>
-            <input id="service" name="service" placeholder="CAD / Logo / Packaging / Graphics / Mixed" />
-
-            <label for="msg">Project details</label>
-            <textarea id="msg" name="msg" placeholder="What do you need? Timeline? Any references?" required></textarea>
-
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-              <button class="btn primary" type="submit">Send inquiry</button>
-              <a class="btn" href="mailto:hello@untutoredunion.com?subject=Project%20Inquiry%20-%20Untutored%20Union">Email instead</a>
-            </div>
-            <div class="note">This form opens your email app (no backend yet). When you’re ready, we can connect it to Formspree / Netlify Forms.</div>
-          </form>
-
-          <div class="card" style="padding:16px">
-            <h4 style="margin:0 0 10px">What to include</h4>
-            <p style="margin:0;color:var(--muted);font-size:13px">A good message helps us quote accurately.</p>
-            <ul style="color:var(--muted);font-size:13px;line-height:1.7;margin:12px 0 0;padding-left:18px">
-              <li>What you’re designing (product / brand / packaging)</li>
-              <li>Preferred format (STEP, SLDPRT, AI, PDF, etc.)</li>
-              <li>Timeline and budget range (if you have one)</li>
-              <li>Any reference images or competitors</li>
-            </ul>
-            <div class="mini" style="margin-top:14px">
-              <strong>Optional:</strong> Add a phone number and your business hours here.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div class="foot container">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div class="logo" style="width:34px;height:34px;border-radius:12px"></div>
-            <div>
-              <div style="font-weight:800;letter-spacing:.4px;color:var(--text)">Untutored Union</div>
-              <div>Built on experience, not tutorials.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:14px;flex-wrap:wrap">
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </main>
-
-  <script>
-    // Simple mailto form handler (no backend)
-    const form = document.getElementById('quoteForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = encodeURIComponent(String(data.get('name')||''));
-      const email = encodeURIComponent(String(data.get('email')||''));
-      const service = encodeURIComponent(String(data.get('service')||''));
-      const msg = encodeURIComponent(String(data.get('msg')||''));
-
-      const subject = encodeURIComponent('Project Inquiry — Untutored Union');
-      const body = encodeURIComponent(
-        `Name: ${decodeURIComponent(name)}\n`+
-        `Email: ${decodeURIComponent(email)}\n`+
-        `Service: ${decodeURIComponent(service)}\n\n`+
-        `${decodeURIComponent(msg)}\n\n`+
-        `— Sent from untutoredunion.com`
-      );
-
-      // Change the email address below to your real inbox
-      window.location.href = `mailto:hello@untutoredunion.com?subject=${subject}&body=${body}`;
-    });
-  </script>
-</body>
-</html>
+            <input id="na
