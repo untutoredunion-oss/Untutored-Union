@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Untutored Union | Built on Experience, Not Tutorials</title>
-  <meta name="description" content="Untutored Union is a multidisciplinary studio offering product design & CAD support, branding, packaging, manuals, and installation videos." />
+  <meta name="description" content="Untutored Union is a managed execution platform for product, brand, packaging, documentation, and launch content." />
 
   <style>
     :root{
@@ -23,29 +23,36 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 700px at 15% 0%, rgba(255,106,0,.18), transparent 60%),
-                  radial-gradient(1000px 600px at 95% 20%, rgba(124,58,237,.16), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(255,106,0,.18), transparent 60%),
+        radial-gradient(1000px 600px at 95% 20%, rgba(124,58,237,.16), transparent 55%),
+        var(--bg);
       color:var(--text);
       line-height:1.5;
     }
     a{color:inherit;text-decoration:none}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
 
-    /* Top bar */
-    .topbar{position:sticky;top:0;z-index:20;background:rgba(11,15,20,.72);backdrop-filter: blur(10px);border-bottom:1px solid var(--line)}
+    /* Topbar */
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(11,15,20,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line)
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:220px}
     .logo{
       width:44px;height:44px;border-radius:14px;
       background: linear-gradient(135deg, rgba(255,106,0,.95), rgba(124,58,237,.9));
       box-shadow: 0 10px 30px rgba(255,106,0,.12);
       position:relative;overflow:hidden;
+      flex:0 0 auto;
     }
     .logo::after{content:"UU";position:absolute;inset:0;display:grid;place-items:center;font-weight:800;letter-spacing:.5px}
     .brand h1{font-size:14px;margin:0;letter-spacing:.6px}
     .brand p{margin:0;font-size:12px;color:var(--muted)}
-    .links{display:flex;gap:16px;align-items:center}
+    .links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
     .links a{font-size:13px;color:var(--muted)}
     .links a:hover{color:var(--text)}
     .cta{display:flex;gap:10px;align-items:center}
@@ -58,9 +65,18 @@
     .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22)}
     .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2));}
     .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{background:transparent}
+
+    /* Cards */
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
 
     /* Hero */
-    .hero{padding:70px 0 26px}
+    .hero{padding:64px 0 10px}
     .heroGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
     .tag{
       display:inline-flex;gap:10px;align-items:center;
@@ -70,15 +86,9 @@
     }
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
     .hero h2{font-size:44px;line-height:1.06;margin:18px 0 12px;letter-spacing:-.6px}
-    .hero .sub{color:var(--muted);font-size:16px;max-width:60ch}
+    .hero .sub{color:var(--muted);font-size:16px;max-width:62ch;margin:0}
     .heroActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
     .heroCard{padding:18px}
     .heroCard h3{margin:0 0 10px;font-size:14px;letter-spacing:.4px;color:var(--muted)}
     .kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -86,7 +96,7 @@
     .kpi .num{font-size:18px;font-weight:800}
     .kpi .lbl{font-size:12px;color:var(--muted)}
 
-    /* Highlights bar */
+    /* Snapshot */
     .mini{margin-top:14px;padding:14px;border-radius:16px;border:1px dashed rgba(255,255,255,.18);color:var(--muted);font-size:13px}
     .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
     .hl-chip{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:rgba(0,0,0,.14)}
@@ -96,10 +106,10 @@
     .hl-logo{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.14);display:grid;place-items:center;font-weight:800;color:rgba(255,255,255,.7);font-size:12px}
 
     /* Sections */
-    section{padding:46px 0}
+    section{padding:42px 0}
     .sectionTitle{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
     .sectionTitle h3{margin:0;font-size:20px}
-    .sectionTitle p{margin:0;color:var(--muted);font-size:13px;max-width:70ch}
+    .sectionTitle p{margin:0;color:var(--muted);font-size:13px;max-width:76ch}
 
     /* About */
     .aboutWrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:center}
@@ -115,6 +125,14 @@
     .aboutList li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px}
     .bullet{width:10px;height:10px;border-radius:50%;margin-top:6px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
 
+    /* 2-column cards */
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .pad{padding:16px}
+    .subtle{color:var(--muted);font-size:13px;margin:0}
+    .list{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7}
+    .pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.03)}
+
     /* Services */
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .service{padding:0;overflow:hidden}
@@ -122,10 +140,8 @@
     .svcBody{padding:16px}
     .service h4{margin:0 0 8px}
     .service p{margin:0;color:var(--muted);font-size:13px}
-    .pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.03)}
 
-    /* Portfolio */
+    /* Work */
     .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .proj{overflow:hidden}
     .thumb{height:170px;border-bottom:1px solid var(--line);background-size:cover;background-position:center}
@@ -133,7 +149,7 @@
     .projBody h4{margin:0 0 6px}
     .projBody p{margin:0;color:var(--muted);font-size:13px}
 
-    /* Process (subtle icons + flow line) */
+    /* Process */
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .step{padding:16px;position:relative;overflow:hidden}
     .step::before{
@@ -150,6 +166,13 @@
     .step p{margin:0;color:var(--muted);font-size:13px}
     .flowLine{height:1px;background:linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,0));margin:18px 0 0}
 
+    /* FAQ */
+    details{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:rgba(255,255,255,.03)}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:750}
+    summary::-webkit-details-marker{display:none}
+    .faqBody{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.7}
+
     /* Contact */
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     form{padding:16px}
@@ -161,22 +184,28 @@
     textarea{min-height:120px;resize:vertical}
     .note{color:var(--muted);font-size:12px;margin-top:10px}
 
+    /* Footer */
     footer{padding:26px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
     .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-    /* Responsive */
-    @media (max-width: 920px){
+    /* Mobile */
+    @media (max-width: 980px){
       .heroGrid{grid-template-columns:1fr}
       .aboutWrap{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
       .grid3,.portfolio{grid-template-columns:1fr 1fr}
       .steps{grid-template-columns:1fr 1fr}
       .contact{grid-template-columns:1fr}
       .links{display:none}
+      .brand{min-width:auto}
     }
     @media (max-width: 560px){
-      .hero h2{font-size:36px}
+      .hero{padding-top:54px}
+      .hero h2{font-size:34px}
       .grid3,.portfolio{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr}
+      .kpi{grid-template-columns:1fr 1fr}
+      .hl-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -195,14 +224,16 @@
 
         <nav class="links" aria-label="Primary">
           <a href="#about">About</a>
+          <a href="#model">How it works</a>
           <a href="#services">Services</a>
-          <a href="#work">Works</a>
+          <a href="#work">Work</a>
           <a href="#process">Process</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="cta">
-          <a class="btn" href="#works">View works</a>
+          <a class="btn ghost" href="#work">View work</a>
           <a class="btn primary" href="#contact">Get a quote</a>
         </div>
       </div>
@@ -211,18 +242,20 @@
 
   <main id="top">
     <div class="container">
+
+      <!-- HERO -->
       <header class="hero">
         <div class="heroGrid">
           <div>
-            <div class="tag"><span class="dot"></span> Multidisciplinary design studio</div>
-            <h2>Design support for products, brands, packaging, manuals, and installation videos.</h2>
+            <div class="tag"><span class="dot"></span> Managed execution platform (Design + Technical)</div>
+            <h2>One place to scope, assign, and deliver work — powered by curated talent.</h2>
             <p class="sub">
-              Whether you need product design, CAD support, brand identity, packaging, documentation, or installation content,
-              we help you move from idea to execution — with clear deliverables and launch‑ready files.
+              You share the goal and timeline. We structure the scope, match the right specialists (designers/engineers),
+              manage revisions, and deliver organized, ready-to-use files — for businesses and individuals across the Americas.
             </p>
             <div class="heroActions">
               <a class="btn primary" href="#contact">Start a project</a>
-              <a class="btn" href="#services">Explore services</a>
+              <a class="btn" href="#model">See how it works</a>
             </div>
           </div>
 
@@ -231,19 +264,19 @@
             <div class="kpi">
               <div class="box">
                 <div class="num">24–72h</div>
-                <div class="lbl">First concepts / drafts</div>
+                <div class="lbl">First drafts</div>
               </div>
               <div class="box">
-                <div class="num">Launch-ready</div>
-                <div class="lbl">Clean deliverables</div>
+                <div class="num">Project lead</div>
+                <div class="lbl">One point of contact</div>
               </div>
               <div class="box">
-                <div class="num">Iterative</div>
-                <div class="lbl">Fast feedback loops</div>
+                <div class="num">Matched talent</div>
+                <div class="lbl">Right skills per scope</div>
               </div>
               <div class="box">
-                <div class="num">Clear</div>
-                <div class="lbl">Scope, timeline, handoff</div>
+                <div class="num">Organized</div>
+                <div class="lbl">Clean handoff files</div>
               </div>
             </div>
 
@@ -251,26 +284,26 @@
               <strong>Quick snapshot (sample)</strong>
               <div class="hl-grid">
                 <div class="hl-chip"><b>Multi-skill execution</b><span>Product • Brand • Packaging • Docs • Video</span></div>
-                <div class="hl-chip"><b>Americas & worldwide focus</b><span>Remote-friendly for US & Canada</span></div>
+                <div class="hl-chip"><b>North America focus</b><span>Remote-friendly for US & Canada</span></div>
               </div>
               <div class="hl-logos" aria-label="Sample client logos">
-                <div class="hl-logo">A</div>
-                <div class="hl-logo">B</div>
-                <div class="hl-logo">C</div>
-                <div class="hl-logo">D</div>
-                <div class="hl-logo">E</div>
+                <div class="hl-logo">A</div><div class="hl-logo">B</div><div class="hl-logo">C</div>
+                <div class="hl-logo">D</div><div class="hl-logo">E</div>
               </div>
-              <div style="margin-top:10px;font-size:12px;color:var(--muted)">Replace these placeholders with real client logos, industries served, turnaround times, or outcomes.</div>
+              <div style="margin-top:10px;font-size:12px;color:var(--muted)">
+                Replace these placeholders with real client logos, industries served, turnaround times, or outcomes.
+              </div>
             </div>
           </aside>
         </div>
       </header>
 
+      <!-- ABOUT -->
       <section id="about">
         <div class="sectionTitle">
           <div>
-            <h3>About us</h3>
-            <p>Practical execution, clean communication, and deliverables that are ready to use.</p>
+            <h3>About</h3>
+            <p>We deliver outcomes through a structured system — scoping, matching talent, managing delivery.</p>
           </div>
         </div>
 
@@ -286,23 +319,67 @@
 
             <div>
               <p style="margin:0">
-                We’re a multidisciplinary studio helping clients across the world to execute design work that spans product, brand, packaging, video editing, documentation, and SOP content. Some projects need CAD support; others need strong visuals and clear communication. We adapt to your scope — and deliver organized outputs you can ship.
+                Untutored Union operates as a managed execution platform. We take in projects, define a clear scope,
+                assign curated specialists, and deliver with quality control. Some work is product/CAD-oriented,
+                some is visual branding, and some is documentation or video — we scale based on what your project actually needs.
               </p>
               <ul class="aboutList">
                 <li><span class="bullet"></span><span><b style="color:var(--text)">Structured delivery</b> — editable sources + final exports, organized and labeled.</span></li>
-                <li><span class="bullet"></span><span><b style="color:var(--text)">Flexible scope</b> — single asset or full launch package.</span></li>
-                <li><span class="bullet"></span><span><b style="color:var(--text)">Clear communication</b> — scope, timeline, revisions, and handoff are transparent.</span></li>
+                <li><span class="bullet"></span><span><b style="color:var(--text)">Flexible scope</b> — from personal projects (menus, wedding cards) to business launches.</span></li>
+                <li><span class="bullet"></span><span><b style="color:var(--text)">Quality control</b> — project lead + checkpoints + clean handoff.</span></li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- MODEL / WHO WE SERVE -->
+      <section id="model">
+        <div class="sectionTitle">
+          <div>
+            <h3>How it works</h3>
+            <p>A platform-style workflow: scope → assign → deliver, with one point of contact.</p>
+          </div>
+          <a class="btn" href="#contact">Send a brief</a>
+        </div>
+
+        <div class="grid2">
+          <div class="card pad">
+            <h4 style="margin:0 0 8px">Managed execution model</h4>
+            <p class="subtle">We handle coordination so you don’t have to manage freelancers.</p>
+            <ol class="list" style="padding-left:18px">
+              <li><b style="color:var(--text)">Brief & scope</b> — goals, deliverables, formats, timeline.</li>
+              <li><b style="color:var(--text)">Match specialists</b> — designer/engineer based on needs.</li>
+              <li><b style="color:var(--text)">Production + reviews</b> — drafts, revisions, checkpoints.</li>
+              <li><b style="color:var(--text)">Delivery</b> — organized files + exports + handoff notes.</li>
+            </ol>
+            <div class="pillRow">
+              <span class="pill">Project lead</span><span class="pill">Version control</span><span class="pill">Quality checks</span>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <h4 style="margin:0 0 8px">Who we serve</h4>
+            <p class="subtle">Businesses and individuals — based on project fit.</p>
+            <ul class="list">
+              <li>Startups launching products or brands</li>
+              <li>Growing companies needing packaging, manuals, or marketing assets</li>
+              <li>Manufacturers needing documentation clarity (when applicable)</li>
+              <li>Individuals: menus, invitations, postcards, personal branding</li>
+            </ul>
+            <div class="pillRow">
+              <span class="pill">US & Canada</span><span class="pill">Remote-friendly</span><span class="pill">Select personal projects</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
       <section id="services">
         <div class="sectionTitle">
           <div>
             <h3>Services</h3>
-            <p>Choose a single service or combine multiple — we support creative, technical, and launch needs depending on your scope.</p>
+            <p>Choose one or bundle multiple. We’ll scope it clearly and assign the right people.</p>
           </div>
           <a class="btn" href="#contact">Ask availability</a>
         </div>
@@ -312,10 +389,8 @@
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
               <h4>Product Design & CAD</h4>
-              <p>3D modeling, assemblies, product visualization, technical drawings, and structured design documentation. Manufacturing/prototype support when required.</p>
-              <div class="pillRow">
-                <span class="pill">3D CAD</span><span class="pill">Drawings</span><span class="pill">Renders</span><span class="pill">Docs</span>
-              </div>
+              <p>3D modeling, assemblies, drawings, and structured documentation. Depth depends on scope.</p>
+              <div class="pillRow"><span class="pill">3D CAD</span><span class="pill">Drawings</span><span class="pill">Renders</span></div>
             </div>
           </div>
 
@@ -323,21 +398,17 @@
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
               <h4>Branding & Logo</h4>
-              <p>Logo systems, wordmarks, brand kits, and scalable guidelines that stay consistent across every touchpoint.</p>
-              <div class="pillRow">
-                <span class="pill">Logo</span><span class="pill">Brand kit</span><span class="pill">Guidelines</span>
-              </div>
+              <p>Logo systems, wordmarks, brand kits, and guidelines across touchpoints.</p>
+              <div class="pillRow"><span class="pill">Logo</span><span class="pill">Brand kit</span><span class="pill">Guidelines</span></div>
             </div>
           </div>
 
           <div class="card service">
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
-              <h4>Packaging Design</h4>
-              <p>Dielines, print-ready layouts, labels, and packaging systems that look right and print right.</p>
-              <div class="pillRow">
-                <span class="pill">Dielines</span><span class="pill">Print-ready</span><span class="pill">Mockups</span>
-              </div>
+              <h4>Packaging & Print</h4>
+              <p>Dielines, print-ready layouts, labels, and packaging systems.</p>
+              <div class="pillRow"><span class="pill">Dielines</span><span class="pill">Print-ready</span><span class="pill">Mockups</span></div>
             </div>
           </div>
 
@@ -345,10 +416,8 @@
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
               <h4>Graphic Design</h4>
-              <p>Marketing assets, social kits, pitch decks, brochures, and illustration systems — consistent and reusable.</p>
-              <div class="pillRow">
-                <span class="pill">Decks</span><span class="pill">Social</span><span class="pill">Print</span>
-              </div>
+              <p>Menus, postcards, wedding cards, brochures, social kits, pitch decks.</p>
+              <div class="pillRow"><span class="pill">Menus</span><span class="pill">Invites</span><span class="pill">Decks</span></div>
             </div>
           </div>
 
@@ -356,10 +425,8 @@
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
               <h4>Video Editing</h4>
-              <p>Installation videos, product walkthroughs, motion graphics, captions, and launch cuts.</p>
-              <div class="pillRow">
-                <span class="pill">How-to</span><span class="pill">Captions</span><span class="pill">Motion</span>
-              </div>
+              <p>Installation videos, walkthroughs, captions, motion graphics, launch cuts.</p>
+              <div class="pillRow"><span class="pill">How-to</span><span class="pill">Captions</span><span class="pill">Motion</span></div>
             </div>
           </div>
 
@@ -367,20 +434,19 @@
             <div class="svcThumb" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=70')"></div>
             <div class="svcBody">
               <h4>Manuals & Documentation</h4>
-              <p>Installation manuals, assembly guides, diagrams, and brand-consistent templates — built for clarity.</p>
-              <div class="pillRow">
-                <span class="pill">Manuals</span><span class="pill">Diagrams</span><span class="pill">PDF</span>
-              </div>
+              <p>Installation manuals, assembly guides, diagrams, brand-consistent templates.</p>
+              <div class="pillRow"><span class="pill">Manuals</span><span class="pill">Diagrams</span><span class="pill">PDF</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="works">
+      <!-- WORK -->
+      <section id="work">
         <div class="sectionTitle">
           <div>
             <h3>Selected work</h3>
-            <p>Replace these placeholders with real projects. Each card supports a short case‑study.</p>
+            <p>Replace these placeholders with real projects. Each card supports a short case-study.</p>
           </div>
         </div>
 
@@ -389,7 +455,7 @@
             <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Product design thumbnail"></div>
             <div class="projBody">
               <h4>Product concept → 3D model + visuals</h4>
-              <p>Translated an idea into CAD, renders, and shareable visuals for decision-making and pitching.</p>
+              <p>CAD support + renders + clean visuals for pitching and internal review.</p>
             </div>
           </article>
 
@@ -397,7 +463,7 @@
             <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Brand identity thumbnail"></div>
             <div class="projBody">
               <h4>Brand + logo system</h4>
-              <p>Logo suite, typography, and rules built to stay consistent across digital, print, and packaging.</p>
+              <p>Logo suite, typography, and rules aligned to real-world usage.</p>
             </div>
           </article>
 
@@ -405,15 +471,15 @@
             <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1520975682031-ae24b3c747ff?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Packaging design thumbnail"></div>
             <div class="projBody">
               <h4>Packaging + dielines</h4>
-              <p>Print-ready packaging system with dielines, specs, and mockups aligned to the brand style.</p>
+              <p>Print-ready layouts with dielines and consistent brand structure.</p>
             </div>
           </article>
 
           <article class="card proj">
             <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Graphic system thumbnail"></div>
             <div class="projBody">
-              <h4>Marketing & communication assets</h4>
-              <p>Reusable templates, brochures, and digital assets designed for clean rollout across channels.</p>
+              <h4>Menus + print collateral</h4>
+              <p>Restaurant menu system and supporting print assets (postcards, flyers).</p>
             </div>
           </article>
 
@@ -421,12 +487,13 @@
             <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1400&q=70')" role="img" aria-label="Installation video thumbnail"></div>
             <div class="projBody">
               <h4>Installation video + manual alignment</h4>
-              <p>Step-by-step instructional video with callouts and captions aligned with the installation manual.</p>
+              <p>Step-by-step instructional video aligned with the written manual.</p>
             </div>
           </article>
         </div>
       </section>
 
+      <!-- PROCESS -->
       <section id="process">
         <div class="sectionTitle">
           <div>
@@ -442,7 +509,7 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M7 4v6M10 12h10M10 16h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </div>
               <h4>Define</h4>
-              <p>We align on scope, deliverables, timeline, and file formats — no surprises later.</p>
+              <p>Scope, deliverables, timeline, and formats — no surprises later.</p>
               <div class="flowLine" aria-hidden="true"></div>
             </div>
           </div>
@@ -453,7 +520,7 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17l10-10 2 2-10 10H7v-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <h4>Draft</h4>
-              <p>First concepts fast: options with notes so you can choose direction confidently.</p>
+              <p>First concepts fast: options + notes for confident direction.</p>
               <div class="flowLine" aria-hidden="true"></div>
             </div>
           </div>
@@ -464,7 +531,7 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-3-6.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M21 4v6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <h4>Refine</h4>
-              <p>Iterate with version control and focused feedback loops. We keep it organized.</p>
+              <p>Feedback loops with version control and quality checks.</p>
               <div class="flowLine" aria-hidden="true"></div>
             </div>
           </div>
@@ -475,17 +542,53 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16v10H4V7z" stroke="currentColor" stroke-width="1.8"/><path d="M8 7V5h8v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </div>
               <h4>Deliver</h4>
-              <p>Final files packaged properly — editable sources, exports, and clean handoff.</p>
+              <p>Organized handoff: editable files + exports + folder structure.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="sectionTitle">
+          <div>
+            <h3>FAQ</h3>
+            <p>Common questions — we keep everything clear before starting.</p>
+          </div>
+        </div>
+
+        <details class="card">
+          <summary>Do you work with individuals (menus, wedding cards, invites)?</summary>
+          <div class="faqBody">Yes. We support individuals for select projects, especially print collateral and personal branding. Share the brief and timeline and we’ll confirm fit.</div>
+        </details>
+
+        <details class="card">
+          <summary>How do you price projects?</summary>
+          <div class="faqBody">Typically fixed-scope project pricing. For ongoing needs we can offer monthly design support. We confirm scope before quoting.</div>
+        </details>
+
+        <details class="card">
+          <summary>Do you do CAD/manufacturing work for every project?</summary>
+          <div class="faqBody">No. CAD and technical depth are included only when the project requires it. Many projects are purely branding/packaging/docs/video.</div>
+        </details>
+
+        <details class="card">
+          <summary>Can you sign an NDA?</summary>
+          <div class="faqBody">Yes. If your project requires confidentiality, we can work under an NDA before you share files.</div>
+        </details>
+
+        <details class="card">
+          <summary>What files will I receive?</summary>
+          <div class="faqBody">We deliver a clean package: editable source files + exports (AI/PDF/PNG/MP4/etc.). For CAD, we deliver the agreed formats (STEP/SLDPRT/etc.).</div>
+        </details>
+      </section>
+
+      <!-- CONTACT -->
       <section id="contact">
         <div class="sectionTitle">
           <div>
             <h3>Contact</h3>
-            <p>Tell us what you’re building. You’ll get a same‑day reply with next steps and a quote range.</p>
+            <p>Tell us what you’re building. You’ll get a same-day reply with next steps and a quote range.</p>
           </div>
         </div>
 
@@ -498,7 +601,7 @@
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
 
             <label for="service">Service</label>
-            <input id="service" name="service" placeholder="Product/CAD / Logo / Packaging / Graphics / Manuals / Video / Mixed" />
+            <input id="service" name="service" placeholder="Logo / Packaging / Menu / Video / Manuals / Product/CAD / Mixed" />
 
             <label for="msg">Project details</label>
             <textarea id="msg" name="msg" placeholder="What do you need? Timeline? Any references?" required></textarea>
@@ -527,8 +630,8 @@
 
             <div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.8">
               <b style="color:var(--text)">Phone:</b> +1 (514) 000-0000<br>
-              <b style="color:var(--text)">Location:</b> Calgary, Canada (Remote)<br>
-              <b style="color:var(--text)">Serving:</b> Americas & more <br><br>
+              <b style="color:var(--text)">Location:</b> Montreal, QC (Remote)<br>
+              <b style="color:var(--text)">Serving:</b> US & Canada<br><br>
               <b style="color:var(--text)">Business Hours:</b><br>
               Mon–Fri: 9:00 AM – 6:00 PM (EST)
             </div>
@@ -537,19 +640,20 @@
               <strong>What to include</strong><br>
               <span style="color:var(--muted);font-size:12px">A good message helps us quote accurately.</span>
               <ul style="margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:12.5px;line-height:1.7">
-                <li>What you need (product/CAD, logo, packaging, graphics, manuals, video)</li>
-                <li>Preferred format (STEP/SLDPRT, AI, PDF, MP4, etc.)</li>
+                <li>What you need (logo, packaging, menu, docs, video, product/CAD)</li>
+                <li>Preferred format (AI, PDF, MP4, STEP/SLDPRT, etc.)</li>
                 <li>Timeline + budget range (if you have one)</li>
                 <li>Reference links / examples / competitors</li>
               </ul>
               <div style="margin-top:10px;color:var(--muted);font-size:12px">
-                <b style="color:var(--text)">Typical deliverables:</b> AI/PDF • CAD formats • print-ready packaging • manuals • MP4
+                <b style="color:var(--text)">Typical deliverables:</b> AI/PDF • PNG/SVG • print-ready packaging • manuals • MP4 • CAD formats
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- FOOTER -->
       <footer>
         <div class="foot container">
           <div style="display:flex;align-items:center;gap:10px">
@@ -561,13 +665,16 @@
           </div>
           <div style="display:flex;gap:14px;flex-wrap:wrap">
             <a href="#about">About</a>
+            <a href="#model">How it works</a>
             <a href="#services">Services</a>
-            <a href="#work">Works</a>
-            <a href="#process">Process</a>
+            <a href="#work">Work</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
+            <a href="#" title="Talent portal coming soon">Talent Portal (Coming Soon)</a>
           </div>
         </div>
       </footer>
+
     </div>
   </main>
 
@@ -586,22 +693,14 @@
 
       const subject = encodeURIComponent('Project Inquiry — Untutored Union');
       const body = encodeURIComponent(
-        `Name: ${decodeURIComponent(name)}
-`+
-        `Email: ${decodeURIComponent(email)}
-`+
-        `Service: ${decodeURIComponent(service)}
-`+
-        `Reference link: ${decodeURIComponent(ref)}
-
-`+
-        `${decodeURIComponent(msg)}
-
-`+
+        `Name: ${decodeURIComponent(name)}\n`+
+        `Email: ${decodeURIComponent(email)}\n`+
+        `Service: ${decodeURIComponent(service)}\n`+
+        `Reference link: ${decodeURIComponent(ref)}\n\n`+
+        `${decodeURIComponent(msg)}\n\n`+
         `— Sent from untutoredunion.com`
       );
 
-      // Change this to your real inbox when ready
       window.location.href = `mailto:hello@untutoredunion.com?subject=${subject}&body=${body}`;
     });
   </script>
